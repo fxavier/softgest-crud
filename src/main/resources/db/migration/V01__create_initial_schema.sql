@@ -71,11 +71,13 @@ email VARCHAR(255),
 account VARCHAR(100),
 credit_limit NUMERIC(19, 2) DEFAULT 0,
 credit NUMERIC(19, 2) DEFAULT 0,
-active BOOLEAN DEFAULT true
+active BOOLEAN DEFAULT true,
+PRIMARY KEY(customer_id)
 );
 
 CREATE TABLE bank(
 bank_id BIGSERIAL NOT NULL,
-bank_name VARCHAR(255) NOT NULL
+bank_name VARCHAR(255) NOT NULL,
+PRIMARY KEY(bank_id)
 );
 
