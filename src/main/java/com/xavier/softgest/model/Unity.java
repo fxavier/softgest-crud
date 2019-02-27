@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "unity")
@@ -17,6 +18,7 @@ public class Unity {
     @Column(name = "unity_id")
     private Long id;
 
+    @NotBlank(message = "unity-1")
     @Column(name = "unity_name")
     private String name;
 }

@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
 
 @Entity
 @Table(name = "category")
@@ -17,5 +19,14 @@ public class Category {
     @EqualsAndHashCode.Include
     private Long id;
 
+    @NotBlank(message = "category-1")
     private String name;
+
+    public Boolean isNew() {
+        return this.id == null;
+    }
+
+    public Boolean exists() {
+        return this.id != null;
+    }
 }

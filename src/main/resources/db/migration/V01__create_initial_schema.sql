@@ -16,7 +16,6 @@ CONSTRAINT fk_subcategory_category
 CREATE TABLE country(
 country_id BIGSERIAL,
 country_name VARCHAR(255) NOT NULL,
-code CHAR(2) DEFAULT NULL,
 PRIMARY KEY(country_id)
 );
 

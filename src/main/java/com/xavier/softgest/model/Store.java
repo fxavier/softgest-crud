@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "store")
@@ -22,6 +23,7 @@ public class Store {
     @Column(name = "store_id")
     private Long id;
 
+    @NotBlank(message = "store-1")
     @Column(name = "store_name")
     private String name;
 
@@ -32,4 +34,12 @@ public class Store {
     private String cell;
 
     private String address;
+
+    public Boolean isNew() {
+      return this.id == null;
+    }
+
+    public Boolean exists() {
+      return this.id != null;
+    }
 }

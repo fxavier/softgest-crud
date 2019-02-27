@@ -9,8 +9,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "product_suplier")
 @Data
-public class ProductSuplier {
+public class ProductSupplier {
 
     @EmbeddedId
-    private ProductSuplierId id;
+    private ProductSupplierId id;
 }

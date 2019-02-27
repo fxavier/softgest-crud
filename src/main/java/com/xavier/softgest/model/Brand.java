@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "brand")
@@ -22,6 +23,15 @@ public class Brand {
     @Column(name = "brand_id")
     private Long id;
 
+    @NotBlank(message = "brand-1")
     @Column(name = "brand_name")
     private String name;
+
+    public Boolean isNew() {
+        return this.id == null;
+    }
+
+    public Boolean exists() {
+        return this.id != null;
+    }
 }

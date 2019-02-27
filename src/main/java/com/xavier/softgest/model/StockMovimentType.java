@@ -1,8 +1,9 @@
 package com.xavier.softgest.model;
 
-public enum MovimentType {
+public enum StockMovimentType {
     ENTRANCE,
     SALE,
-    BROCKEN,
-    DEVOLUTION
+    LOSS,
+    DEVOLUTION,
+
 }

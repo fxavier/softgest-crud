@@ -1,4 +1,9 @@
 package com.xavier.softgest.service.exception;
 
-public class CategoryExistsException extends Throwable {
+import org.springframework.http.HttpStatus;
+
+public class CategoryExistsException extends BusnessException {
+    public CategoryExistsException() {
+        super("category-2", HttpStatus.BAD_REQUEST);
+    }
 }

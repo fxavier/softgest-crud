@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "subcategory")
@@ -24,9 +26,19 @@ public class Subcategory {
     @Column(name = "subcategory_id")
     private Long id;
 
+    @NotBlank(message = "subcategory-1")
     private String name;
 
+    @NotNull(message = "subcategory-2")
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    public Boolean isNew() {
+        return this.id == null;
+    }
+
+    public Boolean exists() {
+        return this.id != null;
+    }
 }

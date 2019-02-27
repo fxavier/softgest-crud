@@ -1,4 +1,9 @@
 package com.xavier.softgest.service.exception;
 
-public class CategoryNotFoundException extends Throwable {
+import org.springframework.http.HttpStatus;
+
+public class CategoryNotFoundException extends BusnessException {
+    public CategoryNotFoundException() {
+        super("category-3", HttpStatus.BAD_REQUEST);
+    }
 }

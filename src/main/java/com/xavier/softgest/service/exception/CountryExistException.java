@@ -1,4 +1,9 @@
 package com.xavier.softgest.service.exception;
 
-public class CountryExistException extends Throwable {
+import org.springframework.http.HttpStatus;
+
+public class CountryExistException extends BusnessException {
+    public CountryExistException() {
+        super("country-2", HttpStatus.BAD_REQUEST);
+    }
 }
