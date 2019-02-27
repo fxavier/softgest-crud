@@ -1,6 +1,10 @@
 package com.xavier.softgest.repository;
 
+import com.xavier.softgest.model.Unity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface Unities {
+import java.util.Optional;
+
+public interface Unities extends JpaRepository<Unity, Long> {
+    Optional<Unity> findByName(String name);
 }

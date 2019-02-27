@@ -21,4 +21,12 @@ public class Unity {
     @NotBlank(message = "unity-1")
     @Column(name = "unity_name")
     private String name;
+
+    public Boolean isNew() {
+        return this.id == null;
+    }
+
+    public Boolean exist() {
+        return this.id != null;
+    }
 }
