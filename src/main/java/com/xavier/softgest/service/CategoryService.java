@@ -23,6 +23,12 @@ public class CategoryService {
        return categories.save(category);
     }
 
+    public void deleteById(Long id) {
+        verifyIfCategoryNotExists(id);
+        categories.deleteById(id);
+    }
+
+
     private void verifyIfCategoryExists(Category category) throws CategoryExistsException {
         Optional<Category> foundCategory = categories.findByName(category.getName());
         if (foundCategory.isPresent() && (category.isNew() || isUpdatingToADifferentCategory(category, foundCategory))) {
@@ -34,10 +40,6 @@ public class CategoryService {
         return category.exists() && !category.equals(foundCategory.get());
     }
 
-    public void deleteById(Long id) {
-        verifyIfCategoryNotExists(id);
-        categories.deleteById(id);
-    }
 
     private void verifyIfCategoryNotExists(Long id) throws CategoryNotFoundException {
         Optional<Category> foundCategory = categories.findById(id);

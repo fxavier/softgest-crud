@@ -23,6 +23,11 @@ public class SubcategoryService {
         return subcategories.save(subcategory);
     }
 
+    public Subcategory findById(Long id) {
+        verifyIfNotExists(id);
+        return subcategories.getOne(id);
+    }
+
     public void deleteById(Long id) {
         verifyIfNotExists(id);
         subcategories.deleteById(id);

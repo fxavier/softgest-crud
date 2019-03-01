@@ -23,9 +23,15 @@ public class CurrencyService {
         return currencies.save(currency);
     }
 
+    public Currency findById(Long id) {
+        verifyIfCurrencyNotExists(id);
+        return currencies.getOne(id);
+    }
+
     public void deleteById(Long id) {
         verifyIfCurrencyNotExists(id);
     }
+
 
     private void verifyIfExists(Currency currency) throws CurrencyExistsException {
         Optional<Currency> foundCurrency = currencies.findByNameAndCode(currency.getName(), currency.getCode());

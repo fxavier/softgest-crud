@@ -22,6 +22,10 @@ public class ProductService {
         verifyIfExists(product);
         return products.save(product);
     }
+    public Product findById(Long id) {
+        verifyIfNotExist(id);
+        return products.getOne(id);
+    }
 
     public void deleteById(Long id) {
         verifyIfNotExist(id);
@@ -45,4 +49,5 @@ public class ProductService {
     private boolean isUpdatingToADifferentEntity(Product product, Optional<Product> foundProduct) {
         return product.exists() && !product.equals(foundProduct.get());
     }
+
 }

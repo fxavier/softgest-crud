@@ -23,6 +23,16 @@ public class CountryService {
         return countries.save(country);
     }
 
+    public Country findById(Long id) {
+       verifyIfNotExists(id);
+       return countries.getOne(id);
+    }
+
+    public void deleteById(Long id) {
+        verifyIfNotExists(id);
+        countries.deleteById(id);
+    }
+
     private void verifyIfCountryExists(Country country) throws CountryExistException {
         Optional<Country> foundCountry = countries.findByName(country.getName());
         if (foundCountry.isPresent() && (country.isNew() || isUpdatingToADifferentCountry(country, foundCountry))) {
@@ -34,7 +44,8 @@ public class CountryService {
         return country.exists() && !country.equals(foundCountry.get());
     }
 
-    public void deleteById(Long id) {
+
+    private void verifyIfNotExists(Long id) {
         Optional<Country> foundCountry = countries.findById(id);
         if (!foundCountry.isPresent()) {
             throw new CountryNotFoundException();

@@ -23,6 +23,11 @@ public class SupplierService {
         return suppliers.save(supplier);
     }
 
+    public Supplier findById(Long id) {
+        verifyIfNotExist(id);
+        return suppliers.getOne(id);
+    }
+
     public void deleteById(Long id) {
         verifyIfNotExist(id);
     }
@@ -35,7 +40,7 @@ public class SupplierService {
     }
 
     private void verifyIfExists(Supplier supplier) throws SupplierExistException {
-        Optional<Supplier> foundSupplier = suppliers.findByName(supplier.getSupplierName());
+        Optional<Supplier> foundSupplier = suppliers.findBySupplierName(supplier.getSupplierName());
         if (foundSupplier.isPresent() && (supplier.isNew() || isUpdatingToADifferentEntity(supplier, foundSupplier))) {
             throw new SupplierExistException();
         }

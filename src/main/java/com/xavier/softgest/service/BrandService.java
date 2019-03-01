@@ -18,10 +18,28 @@ public class BrandService {
         this.brands = brands;
     }
 
+    public Brand findOne(Long id) {
+        verifyIfNotExists(id);
+        return brands.getOne(id);
+    }
+
     public Brand save(final Brand brand) {
         verifyIfBrandExists(brand);
         return brands.save(brand);
     }
+
+    public void deleteById(Long id) {
+        verifyIfNotExists(id);
+        brands.deleteById(id);
+    }
+
+    private void verifyIfNotExists(Long id) {
+        Optional<Brand> foundBrand = brands.findById(id);
+        if (!foundBrand.isPresent()) {
+            throw new BrandNotFoundException();
+        }
+    }
+
 
     private void verifyIfBrandExists(Brand brand) {
         Optional<Brand> foundBrand = brands.findByName(brand.getName());
@@ -34,12 +52,4 @@ public class BrandService {
         return brand.exists() && !brand.equals(foundBrand.get());
     }
 
-    public void deleteById(Long id) {
-        Optional<Brand> foundBrand = brands.findById(id);
-        if (!foundBrand.isPresent()) {
-            throw new BrandNotFoundException();
-        }
-
-        brands.deleteById(id);
-    }
 }

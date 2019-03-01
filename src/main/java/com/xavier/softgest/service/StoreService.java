@@ -23,12 +23,21 @@ public class StoreService {
         return stores.save(store);
     }
 
+    public Store findById(Long id) {
+        verifyIfNotExists(id);
+        return stores.getOne(id);
+    }
+
     public void deleteById(Long id) {
+        verifyIfNotExists(id);
+        stores.deleteById(id);
+    }
+
+    private void verifyIfNotExists(Long id) {
         Optional<Store> foundStore = stores.findById(id);
         if (!foundStore.isPresent()) {
             throw new StoreNotFoundException();
         }
-        stores.deleteById(id);
     }
 
     private void verifyIfExists(Store store) throws StoreExistException {
@@ -41,4 +50,5 @@ public class StoreService {
     private boolean isUpdatingToADifferentStore(Store store, Optional<Store> foundStore) {
         return store.exists() && !store.equals(foundStore.get());
     }
+
 }

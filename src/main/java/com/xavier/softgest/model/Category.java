@@ -22,6 +22,7 @@ public class Category {
     @NotBlank(message = "category-1")
     private String name;
 
+
     public Boolean isNew() {
         return this.id == null;
     }

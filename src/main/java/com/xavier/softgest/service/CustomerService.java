@@ -23,6 +23,10 @@ public class CustomerService {
         return customers.save(customer);
     }
 
+    public Customer findById(Long id) {
+        verifyIfNotExists(id);
+        return customers.getOne(id);
+    }
     public void deleteById(Long id) {
         verifyIfNotExists(id);
         customers.deleteById(id);
@@ -45,4 +49,5 @@ public class CustomerService {
     private boolean isUpdatingToADifferentCustomer(Customer customer, Optional<Customer> foundCustomer) {
         return customer.exists() && !customer.equals(foundCustomer.get());
     }
+
 }
